@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind test</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="h-screen bg-slate-700">
+    <nav class="flex justify-center space-x-4 p-3">
+      <a class="rounded-lg p-3 text-slate-200 font-bold bg-slate-500 hover:bg-slate-600" href="#">Home</a>
+      <a class="rounded-lg p-3 text-slate-200 font-bold bg-slate-500 hover:bg-slate-600" href="#">About us</a>
+      <a class="rounded-lg p-3 text-slate-200 font-bold bg-slate-500 hover:bg-slate-600" href="#">Gallery</a>
+      <a class="rounded-lg p-3 text-slate-200 font-bold bg-slate-500 hover:bg-slate-600" href="#">Contact</a>
+    </nav>
+    <main class=" min-h-90 py-3">
+        <div class="text-center">
+            <h2 class="text-slate-200 font-bold">Welcome to the website of Tailwindcss Test</h2>
+        </div>
+        <div class="header">
+          <h1 class="py-3 text-center">Book Worm</h1>
+      </div>
+      <div class="container">
+          <div class="search-bar py-3 text-center">
+              <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="search-input" placeholder="Search books by title or author...">
+              <button id="search-button" class="p-3 bg-white">Search</button>
+          </div>
+          <div class="results" id="results"></div>
+          <div id="pagination" class="pagination"></div>
+          
+      </div>
+        
+        <script src="script.js"></script>
+    </main>
+  </body>
+</html>

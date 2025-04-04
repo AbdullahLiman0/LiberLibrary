@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-olive: #556B2F;
+    --color-beige: #F5ECE0;
+    --color-slate: #2C3E50;
+    --color-copper: #A97442;
+}
