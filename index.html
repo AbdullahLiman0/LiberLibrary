@@ -3,28 +3,135 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="src/output.css" rel="stylesheet">
+    <link href="src/output.css" rel="stylesheet" />
     <title>Liber Library</title>
   </head>
+  <!-- RUN THIS EVERYTIME YOU START VSC: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
   <body>
     <!-- Een volle pagina container om ervoor te zorgen dat footer onder op het pagina blijft -->
     <div class="flex flex-col min-h-screen bg-beige dark:bg-slate">
-      <!-- Header met Liber Library logo -->
+      <!-- Header with Liber Library logo -->
       <header>
         <img
-          class="h-24 w-36 mx-auto pt-10 dark:hidden"
-          src="image/Liber_Library_Logo_Light.png"
+          class="w-36 h-auto mx-auto pt-10 dark:hidden"
+          src="/img/Liber_Library_Logo_Light.png"
           alt=""
         />
-        <img class="h-24 w-36 mx-auto pt-10 hidden dark:block" src="image/Liber_Library_Logo_Dark.png" alt="">
-        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 fixed top-4 right-4 z-50">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-      </button>
+        <img
+          class="w-36 h-auto mx-auto pt-10 hidden dark:block"
+          src="/img/Liber_Library_Logo_Dark.png"
+          alt=""
+        />
+        <button
+          id="theme-toggle"
+          type="button"
+          class="bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
+        >
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <!-- Hamburger Button -->
+        <button
+          id="menu-toggle"
+          class="fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none"
+        >
+          <svg
+            id="hamburger-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <svg
+            id="close-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <!-- Overlay -->
+        <div
+          id="overlay"
+          class="fixed inset-0 backdrop-blur-sm bg-opacity-25 z-40 hidden transition-all duration-300"
+        ></div>
+
+        <!-- Slide-in Menu -->
+        <div
+          id="slide-menu"
+          class="fixed top-0 right-0 w-64 h-full bg-beige dark:bg-slate shadow-lg z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
+        >
+          <div class="pt-16 px-4">
+            <nav>
+              <ul class="space-y-4">
+                <li>
+                  <a
+                    href="index.html"
+                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Library</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./html/contact.html"
+                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </header>
       <main class="flex-grow py-3">
         <!-- Search input in het mobile versie -->
-        <form class="max-w-sm mx-auto pt-10 md:max-w-md block md:hidden">
+        <form class="max-w-sm mx-auto mt-10 md:max-w-md block md:hidden">
           <label
             for="default-search"
             class="mb-2 text-sm font-medium text-beige sr-only dark:text-white"
@@ -66,32 +173,34 @@
         </form>
         <!-- Welkom bericht op het website -->
         <div
-          class="border bg-olive border-gray-300 rounded-xl max-w-sm mx-auto mt-10 p-3 md:max-w-200 md:grid md:grid-cols-2 md:p-5 md:gap-4 md:bg-transparent md:border-none dark:bg-beige dark:md:bg-transparent"
+          class="bg-olive border-gray-300 border rounded-xl max-w-sm mx-auto mt-10 md:max-w-3xl md:grid md:grid-cols-2 md:gap-10 md:mt-30 lg:max-w-6xl lg:gap-20 2xl:mt-40 md:bg-transparent md:border-none dark:bg-beige dark:md:bg-transparent"
         >
-          <div>
+          <div class="max-w-sm mx-auto md:max-w-md lg:max-w-lg p-4">
             <h1
               class="font-bold text-center text-xl text-sky-100 md:text-left md:text-5xl md:text-slate dark:text-slate dark:md:text-beige"
             >
               Welcome to Liber Library
             </h1>
             <p
-              class="font-semibold text-center text-sm text-sky-100 pt-1 md:text-left md:text-2xl md:pt-10 md:text-slate dark:text-slate dark:md:text-beige"
+              class="font-semibold text-center text-sm text-sky-100 pt-2 md:text-left md:text-2xl md:pt-10 md:text-slate dark:text-slate dark:md:text-beige"
             >
               Discover, explore, and get inspired.<br />
               Your next great adventure begins here!
             </p>
             <!-- Ekstra welkom bericht vanaf tablet -->
             <p
-              class="text-center text-sm text-sky-100 pt-1 md:text-left md:text-xl md:pt-10 hidden md:block md:text-slate dark:text-slate dark:md:text-beige"
+              class="text-center text-sm text-sky-100 pt-2 md:text-left md:text-xl md:pt-10 hidden md:block md:text-slate dark:text-slate dark:md:text-beige"
             >
               Step into a universe where stories come to life, curiosity sparks
               discovery, and every book holds endless possibilities. whether
-              you're here to explore, new ideas, dive into a captivating novel, or
-              find resource for learning, our library is your gateway to knowledge
-              and inspiration.
+              you're here to explore, new ideas, dive into a captivating novel,
+              or find resource for learning, our library is your gateway to
+              knowledge and inspiration.
             </p>
             <!-- Search input in het tablet versie -->
-            <form class="max-w-sm mx-auto pt-10 md:max-w-md hidden md:block">
+            <form
+              class="max-w-sm mx-auto pt-10 md:max-w-md lg:max-w-3xl hidden md:block"
+            >
               <label
                 for="default-search"
                 class="mb-2 text-sm font-medium text-beige sr-only dark:text-white"
@@ -133,47 +242,83 @@
             </form>
           </div>
           <div class="flex justify-center items-center lg:hidden">
-            <img class="h-84 w-48 hidden md:block lg:hidden ml-40" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-84 hidden md:block lg:hidden"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
           </div>
-          <div class="relative">
-            <img class="h-120 hidden lg:block absolute bottom-0 ml-30" src="image/background_books.png" alt="">
+          <div class="flex justify-center items-center p-4">
+            <img
+              class="h-120 hidden lg:block"
+              src="/img/background_books.png"
+              alt=""
+            />
           </div>
         </div>
         <div
           class="border bg-olive border-gray-300 rounded-xl max-w-sm mx-auto mt-10 p-3 md:hidden dark:bg-beige"
         >
-          <h1 class="font-bold text-md text-center text-sky-100 dark:text-slate">
+          <h1
+            class="font-bold text-md text-center text-sky-100 dark:text-slate"
+          >
             Most popular books
           </h1>
         </div>
-        <div class="grid grid-cols-3 gap-4 mt-10 max-w-sm mx-auto p-2 md:hidden">
+        <div
+          class="grid grid-cols-3 gap-4 mt-10 max-w-sm mx-auto p-2 md:hidden"
+        >
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
           <div class="bg-sky-200">
-            <img class="h-48 w-96 object-fit" src="image/imagetester.jpg" alt="" />
+            <img
+              class="h-48 w-96 object-fit"
+              src="/img/imagetester.jpg"
+              alt=""
+            />
             <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
             <p class="text-center p-1 dark:text-beige">Author name</p>
           </div>
@@ -181,9 +326,12 @@
       </main>
       <!--Footer van het pagina -->
       <footer class="mt-10 pb-5">
-        <p class="text-center text-olive dark:text-beige">Liber Library | &copy;2025</p>
+        <p class="text-center text-olive dark:text-beige">
+          Liber Library | &copy;2025
+        </p>
       </footer>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
