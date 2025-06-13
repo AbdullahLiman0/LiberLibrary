@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Document settings and metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS output file -->
+    <link href="../src/output.css" rel="stylesheet" />
+    <!-- Enables light/dark mode awareness -->
+    <meta name="color-scheme" content="light dark">
+    <title>Liber Library</title>
+  </head>
+
+  <!-- RUN THIS EVERYTIME YOU START VSC in Terminal: 
+   
+  FIRST: npm install tailwindcss @tailwindcss/cli
+  THEN: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
+
+  <body>
+    <!-- Full page container to keep footer at bottom -->
+    <div class="flex flex-col min-h-screen bg-beige px-4 dark:bg-slate">
+
+      <!-- Header with logo and navigation buttons -->
+      <header>
+        <!-- Centered Liber Library logo with light/dark versions -->
+        <div class="w-36 mx-auto pt-10">
+          <a href="../index.html" class="inline-block">
+            <!-- Light mode logo -->
+            <img
+              class="w-full h-auto dark:hidden"
+              src="../img/Liber_Library_Logo_Light.png"
+              alt="Liber Library Logo Light"
+              />
+              <!-- Dark mode logo -->
+            <img
+              class="w-full h-auto hidden dark:block"
+              src="../img/Liber_Library_Logo_Dark.png"
+              alt="Liber Library Logo Dark"
+            />
+          </a>
+        </div>
+
+        <!-- Button to toggle light/dark theme -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="border ring-4 bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
+        >
+          <!-- Icon for dark mode -->
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <!-- Icon for light mode -->
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Button to toggle hamburger menu -->
+        <button
+          id="menu-toggle"
+          class="border ring-4 fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none"
+        >
+          <!-- Hamburger icon (3 bars) -->
+          <svg
+            id="hamburger-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Close icon (X) -->
+          <svg
+            id="close-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <!-- Background overlay shown when menu is open -->
+        <div
+          id="overlay"
+          class="fixed inset-0 backdrop-blur-sm bg-opacity-25 z-40 hidden transition-all duration-300"
+        ></div>
+
+        <!-- Slide-in navigation menu (mobile/tablet) -->
+        <div
+          id="slide-menu"
+          class="fixed top-0 right-0 w-64 h-full bg-beige dark:bg-slate shadow-lg z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
+        >
+          <div class="pt-16 px-4">
+            <nav>
+              <ul class="space-y-4">
+                <li>
+                  <a
+                    href="../index.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="library.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Library</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="contact.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main content area -->
+      <main class="flex-grow py-3">
+        <!-- Search bar -->
+        <form action="#" method="POST" class="max-w-sm mx-auto mt-10 md:max-w-xl">
+          <label
+            for="default-search"
+            class="mb-2 text-sm font-medium text-beige sr-only dark:text-white"
+            >Search</label
+          >
+          <div class="relative">
+            <!-- Search icon inside input -->
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <!-- Search input field -->
+            <input
+              type="search"
+              id="search-input"
+              class="block w-full p-4 ps-10 text-sm text-beige border border-live-300 rounded-xl bg-olive focus:ring-blue-500 focus:border-blue-500 dark:bg-beige dark:text-slate"
+              placeholder="Search for Title, Author..."
+              required
+            />
+            <!-- Search button -->
+            <button
+              type="button"
+              id="search-button"
+              class="text-olive absolute end-2.5 bottom-2.5 bg-beige hover:text-beige hover:bg-copper hover:cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 dark:bg-slate dark:text-beige"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+
+        <!-- Laadanimatie -->
+        <div id="loader" class="loader hidden"></div>
+
+        <!-- Search Results -->
+        <div
+          id="results"
+          class="grid grid-cols-3 gap-4 p-4 pt-10 max-w-sm mx-auto md:grid-cols-4 md:max-w-2xl md:p-6 lg:grid-cols-5 lg:max-w-6xl lg:p-10"
+        >
+        </div>
+
+        <!-- Book Detail View -->
+        <div id="book-detail" class="grid grid-cols-2 gap-4 p-4 max-w-4xl mx-auto hidden bg-olive text-beige dark:bg-beige dark:text-slate rounded-xl shadow-lg mt-10">
+        </div>
+
+        <!-- Book Detail View after clicking Author/Genre book -->
+        <div id="moreDetailDiv" class="grid grid-cols-2 gap-4 p-4 max-w-4xl mx-auto hidden bg-olive text-beige dark:bg-beige dark:text-slate rounded-xl shadow-lg mt-10">
+        </div>
+
+        <!-- Information about the author -->
+        <div id="authorContainer" class="grid grid-cols-2 gap-4 p-4 max-w-4xl mx-auto hidden bg-olive text-beige dark:bg-beige dark:text-slate rounded-xl shadow-lg mt-10">
+        </div>
+      </main>
+
+      <!-- Pagination -->
+      <div id="pagination" class="flex justify-center items-center mt-6 mb-6"></div>
+
+      <!--Footer section -->
+      <footer class="mt-10 pb-5">
+        <p class="text-center text-olive dark:text-beige">
+          Liber Library | &copy;2025
+        </p>
+      </footer>
+    </div>
+
+    <!-- Link to external JavaScript for interactivity -->
+    <script src="../script.js"></script>
+  </body>
+</html>
