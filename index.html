@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Document settings and metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS output file -->
     <link href="src/output.css" rel="stylesheet" />
+    <!-- Enables light/dark mode awareness -->
+    <meta name="color-scheme" content="light dark" />
     <title>Liber Library</title>
   </head>
-  <!-- RUN THIS EVERYTIME YOU START VSC: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
+
+  <!-- RUN THIS EVERYTIME YOU START VSC in Terminal: 
+   
+  FIRST: npm install tailwindcss @tailwindcss/cli
+  THEN: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
+
   <body>
-    <!-- Een volle pagina container om ervoor te zorgen dat footer onder op het pagina blijft -->
-    <div class="flex flex-col min-h-screen bg-beige dark:bg-slate">
-      <!-- Header with Liber Library logo -->
+    <!-- Full page container to keep footer at bottom -->
+    <div class="flex flex-col min-h-screen px-4 bg-beige dark:bg-slate">
+      <!-- Header with logo and navigation buttons -->
       <header>
-        <img
-          class="w-36 h-auto mx-auto pt-10 dark:hidden"
-          src="./img/Liber_Library_Logo_Light.png"
-          alt=""
-        />
-        <img
-          class="w-36 h-auto mx-auto pt-10 hidden dark:block"
-          src="./img/Liber_Library_Logo_Dark.png"
-          alt=""
-        />
+        <!-- Centered Liber Library logo with light/dark versions -->
+        <div class="w-36 mx-auto pt-10">
+          <a href="index.html" class="inline-block">
+            <!-- Light mode logo -->
+            <img
+              class="w-full h-auto dark:hidden"
+              src="img/Liber_Library_Logo_Light.png"
+              alt="Liber Library Logo Light"
+            />
+            <!-- Dark mode logo -->
+            <img
+              class="w-full h-auto hidden dark:block"
+              src="img/Liber_Library_Logo_Dark.png"
+              alt="Liber Library Logo Dark"
+            />
+          </a>
+        </div>
+
+        <!-- Button to toggle light/dark theme -->
         <button
           id="theme-toggle"
           type="button"
-          class="bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
+          class="border ring-4 bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
         >
+          <!-- Icon for dark mode -->
           <svg
             id="theme-toggle-dark-icon"
             class="hidden w-5 h-5"
@@ -38,6 +57,7 @@
               d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
             ></path>
           </svg>
+          <!-- Icon for light mode -->
           <svg
             id="theme-toggle-light-icon"
             class="hidden w-5 h-5"
@@ -52,11 +72,13 @@
             ></path>
           </svg>
         </button>
-        <!-- Hamburger Button -->
+
+        <!-- Button to toggle hamburger menu -->
         <button
           id="menu-toggle"
-          class="fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none"
+          class="border ring-4 fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none"
         >
+          <!-- Hamburger icon (3 bars) -->
           <svg
             id="hamburger-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +94,7 @@
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
+          <!-- Close icon (X) -->
           <svg
             id="close-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -89,13 +112,13 @@
           </svg>
         </button>
 
-        <!-- Overlay -->
+        <!-- Background overlay shown when menu is open -->
         <div
           id="overlay"
           class="fixed inset-0 backdrop-blur-sm bg-opacity-25 z-40 hidden transition-all duration-300"
         ></div>
 
-        <!-- Slide-in Menu -->
+        <!-- Slide-in navigation menu (mobile/tablet) -->
         <div
           id="slide-menu"
           class="fixed top-0 right-0 w-64 h-full bg-beige dark:bg-slate shadow-lg z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
@@ -106,21 +129,21 @@
                 <li>
                   <a
                     href="index.html"
-                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
                     >Home</a
                   >
                 </li>
                 <li>
                   <a
-                    href="#"
-                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    href="html/library.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
                     >Library</a
                   >
                 </li>
                 <li>
                   <a
-                    href="./html/contact.html"
-                    class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    href="html/contact.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
                     >Contact</a
                   >
                 </li>
@@ -129,15 +152,22 @@
           </div>
         </div>
       </header>
+
+      <!-- Main content area -->
       <main class="flex-grow py-3">
-        <!-- Search input in het mobile versie -->
-        <form class="max-w-sm mx-auto mt-10 md:max-w-md block md:hidden">
+        <!-- Search bar (mobile version only) -->
+        <form
+          action="./html/library.html"
+          method="GET"
+          class="max-w-sm mx-auto mt-10 md:max-w-md block md:hidden"
+        >
           <label
-            for="default-search"
+            for="search-input-mobile"
             class="mb-2 text-sm font-medium text-beige sr-only dark:text-white"
             >Search</label
           >
           <div class="relative">
+            <!-- Search icon inside input -->
             <div
               class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
             >
@@ -156,13 +186,16 @@
                 />
               </svg>
             </div>
+            <!-- Search input field -->
             <input
               type="search"
-              id="default-search"
+              id="search-input-mobile"
+              name="query"
               class="block w-full p-4 ps-10 text-sm text-beige border border-live-300 rounded-xl bg-olive focus:ring-blue-500 focus:border-blue-500 dark:bg-beige dark:text-slate"
               placeholder="Search for Title, Author..."
               required
             />
+            <!-- Search button -->
             <button
               type="submit"
               class="text-olive absolute end-2.5 bottom-2.5 bg-beige hover:text-beige hover:bg-copper hover:cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 dark:bg-slate dark:text-beige"
@@ -171,25 +204,28 @@
             </button>
           </div>
         </form>
-        <!-- Welkom bericht op het website -->
+
+        <!-- Welcome message block -->
         <div
-          class="bg-olive border-gray-300 border rounded-xl max-w-sm mx-auto mt-10 md:max-w-3xl md:grid md:grid-cols-2 md:gap-10 md:mt-30 lg:max-w-6xl lg:gap-20 2xl:mt-40 md:bg-transparent md:border-none dark:bg-beige dark:md:bg-transparent"
+          class="bg-olive rounded-xl max-w-sm mx-auto mt-10 md:max-w-3xl md:grid md:grid-cols-2 md:gap-10 md:mt-30 lg:max-w-6xl lg:gap-20 2xl:mt-40 md:bg-transparent md:border-none dark:bg-beige dark:md:bg-transparent"
         >
           <div class="max-w-sm mx-auto md:max-w-md lg:max-w-lg p-4">
+            <!-- Main welcome title -->
             <h1
-              class="font-bold text-center text-xl text-sky-100 md:text-left md:text-5xl md:text-slate dark:text-slate dark:md:text-beige"
+              class="font-bold text-center text-xl text-beige md:text-left md:text-5xl md:text-olive dark:text-slate dark:md:text-beige"
             >
               Welcome to Liber Library
             </h1>
+            <!-- Subheading message -->
             <p
-              class="font-semibold text-center text-sm text-sky-100 pt-2 md:text-left md:text-2xl md:pt-10 md:text-slate dark:text-slate dark:md:text-beige"
+              class="font-semibold text-center text-sm text-beige pt-4 md:text-left md:text-2xl md:pt-10 md:mt-2 md:text-olive dark:text-slate dark:md:text-beige"
             >
               Discover, explore, and get inspired.<br />
               Your next great adventure begins here!
             </p>
-            <!-- Ekstra welkom bericht vanaf tablet -->
+            <!-- Extended welcome message (shown from tablet and up) -->
             <p
-              class="text-center text-sm text-sky-100 pt-2 md:text-left md:text-xl md:pt-10 hidden md:block md:text-slate dark:text-slate dark:md:text-beige"
+              class="font-semibold text-center text-sm text-beige pt-4 md:font-normal md:text-left md:text-xl md:pt-10 md:mt-2 md:block md:text-olive dark:text-slate dark:md:text-beige"
             >
               Step into a universe where stories come to life, curiosity sparks
               discovery, and every book holds endless possibilities. whether
@@ -197,12 +233,15 @@
               or find resource for learning, our library is your gateway to
               knowledge and inspiration.
             </p>
-            <!-- Search input in het tablet versie -->
+
+            <!-- Search bar (tablet and up) -->
             <form
+              action="./html/library.html"
+              method="GET"
               class="max-w-sm mx-auto pt-10 md:max-w-md lg:max-w-3xl hidden md:block"
             >
               <label
-                for="default-search"
+                for="search-input-desktop"
                 class="mb-2 text-sm font-medium text-beige sr-only dark:text-white"
                 >Search</label
               >
@@ -227,7 +266,8 @@
                 </div>
                 <input
                   type="search"
-                  id="default-search"
+                  id="search-input-desktop"
+                  name="query"
                   class="block w-full p-4 ps-10 text-sm text-beige border border-gray-300 rounded-xl bg-olive focus:ring-blue-500 focus:border-blue-500 dark:bg-beige dark:text-slate"
                   placeholder="Search for Title, Author..."
                   required
@@ -241,14 +281,18 @@
               </div>
             </form>
           </div>
+
+          <!-- Image shown on tablet (md) -->
           <div class="flex justify-center items-center lg:hidden">
             <img
               class="h-84 hidden md:block lg:hidden"
-              src="./img/imagetester.jpg"
+              src="./img/background_book2.jpg"
               alt=""
             />
           </div>
-          <div class="flex justify-center items-center p-4">
+
+          <!-- Image shown on large screens (lg) -->
+          <div class="flex justify-center items-center p-4 hidden md:block">
             <img
               class="h-120 hidden lg:block"
               src="./img/background_books.png"
@@ -256,75 +300,17 @@
             />
           </div>
         </div>
-        <div
-          class="border bg-olive border-gray-300 rounded-xl max-w-sm mx-auto mt-10 p-3 md:hidden dark:bg-beige"
-        >
-          <h1
-            class="font-bold text-md text-center text-sky-100 dark:text-slate"
-          >
-            Most popular books
-          </h1>
-        </div>
-        <div
-          class="grid grid-cols-3 gap-4 mt-10 max-w-sm mx-auto p-2 md:hidden"
-        >
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
-          <div class="bg-sky-200">
-            <img
-              class="h-48 w-96 object-fit"
-              src="./img/imagetester.jpg"
-              alt=""
-            />
-            <h3 class="text-center p-1 dark:text-beige">Book Title</h3>
-            <p class="text-center p-1 dark:text-beige">Author name</p>
-          </div>
+
+        <div class="flex justify-center items-center p-4">
+          <img
+            class="h-80 md:hidden pt-4"
+            src="./img/background_books.png"
+            alt=""
+          />
         </div>
       </main>
-      <!--Footer van het pagina -->
+
+      <!--Footer section -->
       <footer class="mt-10 pb-5">
         <p class="text-center text-olive dark:text-beige">
           Liber Library | &copy;2025
@@ -332,6 +318,7 @@
       </footer>
     </div>
 
+    <!-- Link to external JavaScript for interactivity -->
     <script src="script.js"></script>
   </body>
 </html>
