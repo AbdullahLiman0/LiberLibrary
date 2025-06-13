@@ -3,8 +3,110 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-olive: #556B2F;
-    --color-beige: #F5ECE0;
-    --color-slate: #2C3E50;
-    --color-copper: #A97442;
+  --color-olive: #556b2f;
+  --color-beige: #f5ece0;
+  --color-slate: #2c3e50;
+  --color-copper: #a97442;
+}
+
+.loader {
+  width: 200px;
+  height: 140px;
+  background: var(--color-olive);
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 8px;
+  perspective: 1000px;
+  margin: 0 auto; /* centrum uitlijnen, optioneel */
+  margin-top: 100px;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: var(--color-beige) no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0);
+  background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px,
+    105px 90px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  width: calc(50% - 10px);
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: rgba(245, 236, 224, 0.7) no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0),
+    linear-gradient(var(--color-olive) 100px, transparent 0);
+  background-position: 50% 30px, 50% 60px, 50% 90px;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  animation: paging 1s linear infinite;
+}
+
+@keyframes paging {
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+
+.dark .loader {
+  background: var(--color-beige);
+}
+
+.dark .loader:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: var(--color-slate) no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0);
+  background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px,
+    105px 90px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.dark .loader:after {
+  content: "";
+  position: absolute;
+  width: calc(50% - 10px);
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: rgba(44, 62, 80, 0.7) no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0),
+    linear-gradient(var(--color-beige) 100px, transparent 0);
+  background-position: 50% 30px, 50% 60px, 50% 90px;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  animation: paging 1s linear infinite;
 }
