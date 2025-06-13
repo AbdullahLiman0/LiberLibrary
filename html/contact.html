@@ -1,29 +1,51 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Document settings and metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us</title>
+    <!-- Tailwind CSS output file -->
     <link href="../src/output.css" rel="stylesheet" />
+    <!-- Enables light/dark mode awareness -->
+    <meta name="color-scheme" content="light dark">
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <title>Liber Library</title>
   </head>
+
+  <!-- RUN THIS EVERYTIME YOU START VSC in Terminal: 
+   
+  FIRST: npm install tailwindcss @tailwindcss/cli
+  THEN: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
+  
   <body>
     <div class="flex flex-col min-h-screen bg-beige dark:bg-slate">
       <header>
-        <img
-          class="w-36 h-auto mx-auto pt-10 dark:hidden"
-          src="./img/Liber_Library_Logo_Light.png"
-          alt=""
-        />
-        <img
-          class="w-36 h-auto mx-auto pt-10 hidden dark:block"
-          src="./img/Liber_Library_Logo_Dark.png"
-          alt=""
-        />
+        <!-- Centered Liber Library logo with light/dark versions -->
+        <div class="w-36 mx-auto pt-10">
+          <a href="../index.html" class="inline-block">
+            <!-- Light mode logo -->
+            <img
+              class="w-full h-auto dark:hidden"
+              src="../img/Liber_Library_Logo_Light.png"
+              alt="Liber Library Logo Light"
+              />
+              <!-- Dark mode logo -->
+            <img
+              class="w-full h-auto hidden dark:block"
+              src="../img/Liber_Library_Logo_Dark.png"
+              alt="Liber Library Logo Dark"
+            />
+          </a>
+        </div>
+
+        <!-- Button to toggle light/dark theme -->
         <button
           id="theme-toggle"
           type="button"
-          class="bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
+          class="border ring-4 bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none focus:ring-4 rounded-lg text-sm p-2.5 fixed top-4 right-16 z-50"
         >
+          <!-- Icon for dark mode -->
           <svg
             id="theme-toggle-dark-icon"
             class="hidden w-5 h-5"
@@ -35,6 +57,7 @@
               d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
             ></path>
           </svg>
+          <!-- Icon for light mode -->
           <svg
             id="theme-toggle-light-icon"
             class="hidden w-5 h-5"
@@ -49,59 +72,129 @@
             ></path>
           </svg>
         </button>
-            <!-- Hamburger Button -->
-    <button id="menu-toggle" class="fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none">
-      <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-  </button>
 
-  <!-- Overlay -->
-  <div id="overlay" class="fixed inset-0 backdrop-blur-sm bg-opacity-25 z-40 hidden transition-all duration-300"></div>
+        <!-- Button to toggle hamburger menu -->
+        <button
+          id="menu-toggle"
+          class="border ring-4 fixed top-4 right-4 z-50 p-2 rounded-md bg-olive text-beige dark:bg-beige dark:text-slate hover:bg-copper focus:outline-none"
+        >
+          <!-- Hamburger icon (3 bars) -->
+          <svg
+            id="hamburger-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Close icon (X) -->
+          <svg
+            id="close-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
 
-  <!-- Slide-in Menu -->
-  <div id="slide-menu" class="fixed top-0 right-0 w-64 h-full bg-beige dark:bg-slate shadow-lg z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
-      <div class="pt-16 px-4">
-          <nav>
+        <!-- Background overlay shown when menu is open -->
+        <div
+          id="overlay"
+          class="fixed inset-0 backdrop-blur-sm bg-opacity-25 z-40 hidden transition-all duration-300"
+        ></div>
+
+        <!-- Slide-in navigation menu (mobile/tablet) -->
+        <div
+          id="slide-menu"
+          class="fixed top-0 right-0 w-64 h-full bg-beige dark:bg-slate shadow-lg z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
+        >
+          <div class="pt-16 px-4">
+            <nav>
               <ul class="space-y-4">
-                  <li>
-                      <a href="../index.html" class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors">Home</a>
-                  </li>
-                  <li>
-                      <a href="#" class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors">Library</a>
-                  </li>
-                  <li>
-                      <a href="contact.html" class="block py-2 px-4 text-slate hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors">Contact</a>
-                  </li>
+                <li>
+                  <a
+                    href="../index.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="library.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Library</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="contact.html"
+                    class="block py-2 px-4 text-olive hover:bg-copper hover:text-beige dark:text-beige rounded-md transition-colors"
+                    >Contact</a
+                  >
+                </li>
               </ul>
-          </nav>
-      </div>
-  </div>
+            </nav>
+          </div>
+        </div>
       </header>
-      <nav class="md:hidden hidden flex-col space-y-2 mt-2 px-4 text-center text-olive dark:text-beige text-lg font-medium">
-        <a href="index.html">HOME</a>
-        <a href="library.html">LIBRARY</a>
-        <a href="contact.html">CONTACT</a>
-      </nav>
+      
+      <!-- Main container to center the content and ensure spacing -->
       <div class="flex-grow w-full flex justify-center items-center px-4 pt-8 pb-16">
+        <!-- Responsive grid layout for the contact section -->
         <main class="w-full max-w-screen-lg grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
+          
+          <!-- Image section (only visible on medium and larger screens) -->
           <div class="hidden md:block w-full h-full">
             <img
-              src="../img/contact_pic_vert.jpg"
+              src="../img/Contact_Image_Light.png"
               alt="Contact Image"
-              class="w-full h-full object-cover rounded-l-2xl shadow-md" />
+              class="w-full h-full object-cover rounded-l-2xl shadow-md block dark:hidden" />
+              <img
+              src="../img/Contact_Image_Dark.jpg"
+              alt="Contact Image"
+              class="w-full h-full object-cover rounded-l-2xl shadow-md hidden dark:block" />
           </div>
+
+          <!-- Contact form section -->
           <section class="bg-olive dark:bg-beige rounded-2xl md:rounded-r-2xl md:rounded-l-none shadow-md p-6 sm:p-8 w-full min-w-[280px] max-w-full">
+            
+            <!-- Title and subtitle -->
             <h1 class="text-2xl font-bold mb-2 text-beige dark:text-slate text-center">
               Contact Us
             </h1>
             <p class="text-beige dark:text-slate text-center mb-6">
               Get in touch with us
             </p>
-            <form action="#" method="POST">
+
+            <!-- Success/Error message display -->
+            <div id="form-message" class="mb-4 hidden">
+              <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 hidden">
+                Thank you! Your message has been sent successfully. You should receive a confirmation email shortly.
+              </div>
+              <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 hidden">
+                Sorry, there was an error sending your message. Please try again.
+              </div>
+            </div>
+
+            <!-- Contact form -->
+            <form id="contact-form">
+
+              <!-- First name input -->
               <div class="mb-4">
                 <label class="block text-beige dark:text-slate font-medium mb-2">
                   First name:
@@ -109,9 +202,12 @@
                 <input
                   type="text"
                   name="fname"
+                  id="fname"
                   required
                   class="w-full px-3 py-2 border text-beige border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-beige dark:text-slate dark:border-slate dark:focus:ring-slate" />
               </div>
+
+              <!-- Last name input -->
               <div class="mb-4">
                 <label class="block text-beige dark:text-slate font-medium mb-2">
                   Last name:
@@ -119,9 +215,12 @@
                 <input
                   type="text"
                   name="lname"
+                  id="lname"
                   required
                   class="w-full px-3 py-2 border text-beige border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-beige dark:text-slate dark:border-slate dark:focus:ring-slate" />
               </div>
+
+              <!-- Email address input -->
               <div class="mb-4">
                 <label class="block text-beige dark:text-slate font-medium mb-2">
                   Email address:
@@ -129,34 +228,47 @@
                 <input
                   type="email"
                   name="email"
+                  id="email"
                   required
                   class="w-full px-3 py-2 border text-beige border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-beige dark:text-slate dark:border-slate dark:focus:ring-slate" />
               </div>
+
+              <!-- Message input -->
               <div class="mb-6">
                 <label class="block text-beige dark:text-slate font-medium mb-2">
                   Message:
                 </label>
                 <textarea
                   name="message"
+                  id="message"
                   required
                   rows="5"
                   class="w-full px-3 py-2 border text-beige border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-beige dark:text-slate dark:border-slate dark:focus:ring-slate"></textarea>
               </div>
+
+              <!-- Submit button -->
               <button
                 type="submit"
+                id="submit-btn"
                 class="w-full bg-beige text-olive font-bold py-2 px-4 rounded-md hover:bg-copper hover:text-beige hover:cursor-pointer focus:bg-copper focus:text-beige focus:outline-none focus:ring-2 focus:ring-copper focus:ring-offset-2 transition-colors dark:bg-slate dark:text-beige dark:hover:bg-copper dark:hover:text-beige dark:focus:bg-copper dark:focus:text-beige">
-                Submit
+                <span id="btn-text">Submit</span>
+                <span id="btn-loading" class="hidden">Sending...</span>
               </button>
             </form>
           </section>
         </main>
       </div>
+
+
+      <!-- Footer section -->
       <footer class="mt-10 pb-5">
         <p class="text-center text-olive dark:text-beige">
           Liber Library | &copy;2025
         </p>
       </footer>
     </div>
+
+    <!-- Link to external JavaScript for interactivity -->
     <script src="../script.js"></script>
   </body>
 </html>
