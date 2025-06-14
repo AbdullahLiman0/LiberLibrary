@@ -201,7 +201,7 @@ async function showAuthorDetails(authorKey) {
       const wdata = await wres.json();
       if (wdata.entries) {
         worksHtml = `
-          <h3 class="text-xl font-semibold mb-2 col-span-2">Werken van deze auteur</h3>
+          <h3 class="text-xl font-semibold mb-2 col-span-2">Works by this author</h3>
           <ul class="list-disc px-5">
         `;
         wdata.entries.slice(0,5).forEach(w => {
@@ -217,12 +217,12 @@ async function showAuthorDetails(authorKey) {
     authorContainer.innerHTML = `
       <h2 class="text-2xl font-bold mb-4 col-span-2">${data.name}</h2>
       <div class="col-span-2">
-        <p><strong>Geboorte:</strong> ${data.birth_date || 'Onbekend'}</p>
-        <p><strong>Overlijden:</strong> ${data.death_date || '—'}</p>
+        <p><strong>Born:</strong> ${data.birth_date || 'Unknown'}</p>
+        <p><strong>Died:</strong> ${data.death_date || '—'}</p>
       </div>
-      <p class="col-span-2"><strong>Bio:</strong> ${
+      <p class="col-span-2"><strong>Biography:</strong> ${
         typeof data.bio === 'string' ? data.bio :
-        data.bio?.value || 'Geen beschrijving.'
+        data.bio?.value || 'No description.'
       }</p>
       ${worksHtml}
       <button
@@ -440,8 +440,8 @@ function displayBooks() {
                   <p class="mb-4 text-sm col-span-2">
                   <strong>Rating:</strong>
                   ${averageRating !== "N/A"
-                    ? `${averageRating} ★ (${ratingCount} stemmen)`
-                    : "Nog geen stemmen"}
+                    ? `${averageRating} ★ (${ratingCount} ratings)`
+                    : "No ratings."}
                   </p>
                 </div>
                 <div id="related-books" class="col-span-2 mt-4"></div>
@@ -783,7 +783,7 @@ async function showMoreDetail(workKey) {
     year: publishYear,
     desc: typeof workData.description === 'string'
       ? workData.description
-      : workData.description?.value || 'Geen beschrijving.',
+      : workData.description?.value || 'No description.',
     authors: authorInfos
   };
 
@@ -856,8 +856,8 @@ try {
       <p class="mb-4 text-sm col-span-2">
       <strong>Rating:</strong>
       ${averageRating !== "N/A"
-        ? `${averageRating} ★ (${ratingCount} stemmen)`
-        : "Nog geen stemmen"}
+        ? `${averageRating} ★ (${ratingCount} ratings)`
+        : "No ratings"}
       </p>
     </div>
     <button
