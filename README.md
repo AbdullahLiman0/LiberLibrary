@@ -1,4 +1,4 @@
-# <div align="center">
+<div align="center">
   <img src="img/Liber_Library_Logo_Dark.png" alt="LiberLibrary Logo Dark" width="200"/>
 </div>
 
