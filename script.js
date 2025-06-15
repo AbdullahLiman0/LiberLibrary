@@ -182,9 +182,9 @@ async function fetchBooks(query) {
 // Display details for a given author, hiding other views
 async function showAuthorDetails(authorKey) {
   const moreDetailDiv = document.getElementById('moreDetailDiv');
-  // 0) bepaal vanuit welk paneel we komen (voordat we 'moreDetailDiv' verbergen)
+  // Determine from which panel we are coming (before we hide 'moreDetailDiv')
   const fromMore = moreDetailDiv && !moreDetailDiv.classList.contains('hidden');
-  // verberg daarna altijd het “meer details” paneel
+  // Then always hide the "more details" panel
   if (moreDetailDiv) moreDetailDiv.classList.add('hidden');
 
   const authorContainer = document.getElementById('authorContainer');
