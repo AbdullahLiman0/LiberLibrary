@@ -1,14 +1,5 @@
 # <div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="img/Liber_Library_Logo_Light.png" alt="LiberLibrary Logo Light" width="200"/>
-      </td>
-      <td align="center">
-        <img src="img/Liber_Library_Logo_Dark.png" alt="LiberLibrary Logo Dark" width="200"/>
-      </td>
-    </tr>
-  </table>
+  <img src="img/Liber_Library_Logo_Dark.png" alt="LiberLibrary Logo Dark" width="200"/>
 </div>
 
 - This GitHub repository is public
