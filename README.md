@@ -100,7 +100,8 @@ The application uses a custom color scheme with the following main colors:
 Contributions are welcome! Please feel free to submit a Pull Request.
  
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+- This project is licensed under the MIT License - see the LICENSE file for details.
+- For any inquiries, please contact info@liberlibrary.com
  
 ## 🙏 Acknowledgments
 - Open Library for providing the book database API
