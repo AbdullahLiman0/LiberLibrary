@@ -1,8 +1,7 @@
-![LiberLibrary Logo](img/Liber_Library_Logo_Light.png)
-
+# LiberLibrary 📚
 - This GitHub repository is public
 - A modern, responsive web application for exploring and discovering books from the Open Library database. LiberLibrary provides an intuitive interface for searching books, viewing author details, and managing your reading journey.
-
+![LiberLibrary Logo](img/Liber_Library_Logo_Light.png)
 
 ## 🌟 Features
  
